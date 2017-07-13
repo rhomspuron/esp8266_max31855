@@ -20,6 +20,7 @@
 //**************************************************************//
 //                 Gloabals declarations                        //
 //**************************************************************//
+#define SPI_SOFTWARE
 #define GPIO_LED_WIFI_CONNECTED 16  
 #define GPIO_MISO 12
 #define GPIO_MOSI 13
@@ -33,8 +34,14 @@ String double2str(double value, int presition=100);
 //**************************************************************//
 //                Gloabals Variables                            //
 //**************************************************************//
+
+#ifdef SPI_SOFTWARE
+MAX31855 thermocouple_1 = MAX31855(GPIO_CS_2, GPIO_SCK, GPIO_MISO);
+MAX31855 thermocouple_2 = MAX31855(GPIO_CS_1, GPIO_SCK, GPIO_MISO);
+#else
 MAX31855 thermocouple_1 = MAX31855(GPIO_CS_2);
 MAX31855 thermocouple_2 = MAX31855(GPIO_CS_1);
+#endif
 
 //**************************************************************//
 //                Setup Method                                  //

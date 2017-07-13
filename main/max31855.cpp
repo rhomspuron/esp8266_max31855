@@ -63,18 +63,18 @@ void MAX31855::updateValues(){
   } else {
     // Software SPI
 
-    digitalWrite(sck, LOW);
+    digitalWrite(sck, HIGH);
     delay(1);
 
     for (i=31; i>=0; i--) {
       digitalWrite(sck, LOW);
-      delay(1);
+      delay(0.001);
       data <<= 1;
       if (digitalRead(miso)) {
         data |= 1;
       }
       digitalWrite(sck, HIGH);
-      delay(1);
+      delay(0.001);
     }
   }
   digitalWrite(cs, HIGH);
